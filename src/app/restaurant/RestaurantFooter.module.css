@@ -1,0 +1,148 @@
+.footer {
+  background-color: #222;
+  color: #fff;
+  padding: 3rem 0 0;
+  font-family: "Arial", sans-serif;
+  /* position: fixed; */
+  /* bottom: 0; */
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.footerContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footerSection {
+  margin-bottom: 2rem;
+}
+
+.footerHeading {
+  color: #e63946;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.footerHeading::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 2px;
+  background-color: #e63946;
+}
+
+.footerText {
+  color: #bbb;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialIcon {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background-color: #333;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.socialIcon:hover {
+  background-color: #e63946;
+}
+
+.socialIcon img {
+  width: 18px;
+  height: 18px;
+  filter: brightness(0) invert(1);
+}
+
+.footerLinks {
+  list-style: none;
+  padding: 0;
+}
+
+.footerLinks li {
+  margin-bottom: 0.8rem;
+}
+
+.footerLink {
+  color: #bbb;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.footerLink::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: #e63946;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateX(-5px);
+}
+
+.footerLink:hover {
+  color: #fff;
+}
+
+.footerLink:hover::before {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.contactInfo {
+  color: #bbb;
+  font-style: normal;
+  line-height: 1.8;
+}
+
+.openingHours {
+  list-style: none;
+  padding: 0;
+  color: #bbb;
+  line-height: 1.8;
+}
+
+.footerBottom {
+  background-color: #111;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+.legalLinks {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 0.8rem;
+}
+
+.legalLink {
+  color: #777;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.legalLink:hover {
+  color: #e63946;
+}
