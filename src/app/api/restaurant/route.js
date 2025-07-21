@@ -23,17 +23,24 @@ export async function POST(request) {
     await mongoose.connect(connectionStr);
     const payload = await request.json();
     let result;
+    let success = false;
     if (payload.login) {
       result = await Restaurant.findOne({
         email: payload.email,
         password: payload.password,
       });
+      if (result) {
+        success = true;
+      }
     } else {
       const newRestaurant = new Restaurant(payload);
       result = await newRestaurant.save();
+      if (result) {
+        success = true;
+      }
     }
     console.log("🚀 ~ POST ~ payload:", payload);
-    return NextResponse.json({ result, success: true });
+    return NextResponse.json({ result, success });
   } catch (error) {
     console.error("Error saving restaurant:", error);
     return NextResponse.json(
