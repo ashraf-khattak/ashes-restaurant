@@ -91,6 +91,11 @@ const RestaurantLogin = () => {
             Login
           </button>
         </div>
+        {/* <div className="input-wrapper">
+          <button type="submit" className="button">
+            Login
+          </button>
+        </div> */}
       </form>
 
       <style jsx>{`
