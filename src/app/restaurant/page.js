@@ -5,19 +5,19 @@ import RestaurantLogin from "../_components/RestaurantLogin";
 import RestaurantSignUp from "../_components/RestaurantSignUp";
 import RestaurantHeader from "../_components/RestaurantHeader";
 import RestaurantFooter from "../_components/RestaurantFooter";
+import { Box } from "@mui/material";
 
 const Restaurant = () => {
   const [isLogin, setIsLogin] = useState(true);
   return (
     <>
-      <div className="container">
+      <Box className="container">
         <RestaurantHeader />
         <div
           style={{
             marginTop: "40px",
           }}
         >
-          <h1>Login/Signup Page</h1>
           {isLogin ? <RestaurantLogin /> : <RestaurantSignUp />}
           <button className="button-link" onClick={() => setIsLogin(!isLogin)}>
             {isLogin
@@ -26,7 +26,7 @@ const Restaurant = () => {
           </button>
         </div>
         <RestaurantFooter />
-      </div>
+      </Box>
     </>
   );
 };
