@@ -1,40 +1,74 @@
-import { useRouter } from "next/navigation";
+"use client";
+
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import {
+  Box,
+  Typography,
+  TextField,
+  Button,
+  Alert,
+  Paper,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
+import {
+  Visibility,
+  VisibilityOff,
+  Email,
+  Lock,
+  Restaurant,
+  LocationCity,
+  Home,
+  Phone,
+} from "@mui/icons-material";
 
 const RestaurantSignUp = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
-  const [city, setCity] = useState("");
-  const [address, setAddress] = useState("");
-  const [contact, setContact] = useState("");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    name: "",
+    city: "",
+    address: "",
+    contact: "",
+  });
 
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
   const router = useRouter();
+
+  const handleChange = (field) => (event) => {
+    setFormData({ ...formData, [field]: event.target.value });
+    // Clear specific field error and API error when user starts typing
+    if (errors[field] || errors.api) {
+      setErrors({ ...errors, [field]: "", api: "" });
+    }
+  };
 
   const validate = () => {
     const newErrors = {};
 
-    if (!email) newErrors.email = "Email is required.";
-    else if (!/\S+@\S+\.\S+/.test(email))
+    if (!formData.email) newErrors.email = "Email is required.";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
       newErrors.email = "Invalid email format.";
 
-    if (!password) newErrors.password = "Password is required.";
-    else if (password.length < 3)
+    if (!formData.password) newErrors.password = "Password is required.";
+    else if (formData.password.length < 3)
       newErrors.password = "Password must be at least 3 characters.";
 
-    if (!confirmPassword)
+    if (!formData.confirmPassword)
       newErrors.confirmPassword = "Please confirm your password.";
-    else if (confirmPassword !== password)
+    else if (formData.confirmPassword !== formData.password)
       newErrors.confirmPassword = "Passwords do not match.";
 
-    if (!name) newErrors.name = "Restaurant name is required.";
-    if (!city) newErrors.city = "City is required.";
-    if (!address) newErrors.address = "Address is required.";
+    if (!formData.name) newErrors.name = "Restaurant name is required.";
+    if (!formData.city) newErrors.city = "City is required.";
+    if (!formData.address) newErrors.address = "Address is required.";
 
-    if (!contact) newErrors.contact = "Contact number is required.";
-    else if (!/^\d{10,15}$/.test(contact))
+    if (!formData.contact) newErrors.contact = "Contact number is required.";
+    else if (!/^\d{10,15}$/.test(formData.contact))
       newErrors.contact = "Contact must be 10–15 digits.";
 
     setErrors(newErrors);
@@ -48,15 +82,7 @@ const RestaurantSignUp = () => {
     const response = await fetch("http://localhost:3000/api/restaurant", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        email,
-        password,
-        confirmPassword,
-        name,
-        city,
-        address,
-        contact,
-      }),
+      body: JSON.stringify(formData),
     });
 
     const result = await response.json();
@@ -70,117 +96,240 @@ const RestaurantSignUp = () => {
     }
   };
 
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleClickShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  // Define form fields configuration
+  const formFields = [
+    {
+      id: "name",
+      label: "Restaurant Name",
+      type: "text",
+      icon: <Restaurant sx={{ color: "white" }} />,
+      gridProps: {},
+    },
+    {
+      id: "email",
+      label: "Email",
+      type: "email",
+      icon: <Email sx={{ color: "white" }} />,
+      gridProps: {},
+    },
+    {
+      id: "password",
+      label: "Password",
+      type: showPassword ? "text" : "password",
+      icon: <Lock sx={{ color: "white" }} />,
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visibility"
+            onClick={handleClickShowPassword}
+            edge="end"
+            sx={{ color: "white" }}
+          >
+            {showPassword ? <VisibilityOff /> : <Visibility />}
+          </IconButton>
+        </InputAdornment>
+      ),
+      gridProps: {},
+    },
+    {
+      id: "confirmPassword",
+      label: "Confirm Password",
+      type: showConfirmPassword ? "text" : "password",
+      icon: <Lock sx={{ color: "white" }} />,
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton
+            aria-label="toggle password visibility"
+            onClick={handleClickShowConfirmPassword}
+            edge="end"
+            sx={{ color: "white" }}
+          >
+            {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+          </IconButton>
+        </InputAdornment>
+      ),
+      gridProps: {},
+    },
+    {
+      id: "city",
+      label: "City",
+      type: "text",
+      icon: <LocationCity sx={{ color: "white" }} />,
+      gridProps: {},
+    },
+    {
+      id: "contact",
+      label: "Contact Number",
+      type: "text",
+      icon: <Phone sx={{ color: "white" }} />,
+      gridProps: {},
+    },
+    {
+      id: "address",
+      label: "Full Address",
+      type: "text",
+      icon: <Home sx={{ color: "white" }} />,
+      gridProps: { xs: "1 / -1", md: "1 / -1" },
+    },
+  ];
+
   return (
-    <div className="signup-container">
-      <h3>Restaurant Sign Up</h3>
-      <form onSubmit={handleSubmit}>
-        <div className="input-wrapper">
-          <input
-            type="email"
-            placeholder="Enter Email ID"
-            className="input-field"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          {errors.email && <span className="error-text">{errors.email}</span>}
-        </div>
+    <Paper
+      elevation={3}
+      sx={{
+        p: 4,
+        maxWidth: 1000,
+        mx: "auto",
+        mt: 4,
+        backgroundImage:
+          "url('https://b.zmtcdn.com/data/pictures/8/19475178/0ee7d3ca6c321c2e1ec61042f1a3d056.jpg?fit=around|960:500&crop=960:500;*,*');",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundBlendMode: "overlay",
+        color: "white",
+        // opacity: .5,
+        backgroundColor: "#362c2ce9",
+        borderRadius: "16px",
+        boxShadow:
+          "0 10px 30px rgba(197, 51, 180, 0.2), 0 6px 10px rgba(0, 0, 0, 0.15)",
+      }}
+    >
+      <Typography
+        variant="h4"
+        gutterBottom
+        textAlign="center"
+        sx={{
+          background: "linear-gradient(45deg, #FF4081, #7C4DFF, #18FFFF)",
+          backgroundClip: "text",
+          textFillColor: "transparent",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          fontWeight: "bold",
+          backgroundSize: "200% auto",
+          animation: "gradient 6s linear infinite",
+          "@keyframes gradient": {
+            "0%": {
+              backgroundPosition: "0% 50%",
+            },
+            "50%": {
+              backgroundPosition: "100% 50%",
+            },
+            "100%": {
+              backgroundPosition: "0% 50%",
+            },
+          },
+        }}
+      >
+        Welcome to Restaurant
+      </Typography>
+      <Typography
+        variant="h4"
+        gutterBottom
+        textAlign="center"
+        sx={{
+          color: "#18FFFF",
+          fontWeight: "bold",
+          mb: 3,
+        }}
+      >
+        Sign Up
+      </Typography>
 
-        <div className="input-wrapper">
-          <input
-            type="password"
-            placeholder="Enter Password"
-            className="input-field"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{
+          display: "grid",
+          gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+          gap: 2,
+        }}
+      >
+        {formFields.map((field) => (
+          <TextField
+            key={field.id}
+            label={field.label}
+            type={field.type}
+            value={formData[field.id]}
+            onChange={handleChange(field.id)}
+            error={!!errors[field.id]}
+            helperText={errors[field.id]}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">{field.icon}</InputAdornment>
+              ),
+              endAdornment: field.endAdornment || null,
+            }}
+            sx={{
+              gridColumn: field.gridProps || {},
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "white",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "#18FFFF",
+                },
+                color: "white",
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "& .MuiFormHelperText-root": {
+                color: errors[field.id]
+                  ? "#f44336"
+                  : "rgba(255, 255, 255, 0.7)",
+              },
+            }}
           />
-          {errors.password && (
-            <span className="error-text">{errors.password}</span>
-          )}
-        </div>
-
-        <div className="input-wrapper">
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            className="input-field"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
-          {errors.confirmPassword && (
-            <span className="error-text">{errors.confirmPassword}</span>
-          )}
-        </div>
-
-        <div className="input-wrapper">
-          <input
-            type="text"
-            placeholder="Restaurant Name"
-            className="input-field"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          {errors.name && <span className="error-text">{errors.name}</span>}
-        </div>
-
-        <div className="input-wrapper">
-          <input
-            type="text"
-            placeholder="City"
-            className="input-field"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-          {errors.city && <span className="error-text">{errors.city}</span>}
-        </div>
-
-        <div className="input-wrapper">
-          <input
-            type="text"
-            placeholder="Full Address"
-            className="input-field"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-          {errors.address && (
-            <span className="error-text">{errors.address}</span>
-          )}
-        </div>
-
-        <div className="input-wrapper">
-          <input
-            type="text"
-            placeholder="Contact Number"
-            className="input-field"
-            value={contact}
-            onChange={(e) => setContact(e.target.value)}
-          />
-          {errors.contact && (
-            <span className="error-text">{errors.contact}</span>
-          )}
-        </div>
+        ))}
 
         {errors.api && (
-          <div className="input-wrapper">
-            <span className="error-text">{errors.api}</span>
-          </div>
+          <Alert
+            severity="error"
+            sx={{
+              gridColumn: "1 / -1",
+              mt: 1,
+              "& .MuiAlert-message": { color: "white" },
+            }}
+          >
+            {errors.api}
+          </Alert>
         )}
 
-        <div className="input-wrapper">
-          <button type="submit" className="button">
-            Sign Up
-          </button>
-        </div>
-      </form>
-
-      <style jsx>{`
-        .error-text {
-          color: red;
-          font-size: 13px;
-          margin-top: 5px;
-          display: block;
-        }
-      `}</style>
-    </div>
+        <Button
+          type="submit"
+          variant="contained"
+          size="medium"
+          sx={{
+            gridColumn: "1 / -1",
+            mt: 2,
+            py: 1.5,
+            backgroundColor: "#18FFFF",
+            color: "black",
+            fontWeight: "bold",
+            // width: "50%",
+            "&:hover": {
+              backgroundColor: "#00e5e5",
+              // transform: "translateY(-2px)",
+              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+            },
+            transition: "all 0.3s ease",
+          }}
+        >
+          Create Account
+        </Button>
+      </Box>
+    </Paper>
   );
 };
 
