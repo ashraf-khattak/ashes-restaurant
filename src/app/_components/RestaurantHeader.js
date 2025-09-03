@@ -100,7 +100,10 @@ const RestaurantHeader = () => {
     setMobileMenuOpen(false);
   };
 
-  const menuItems = [{ name: "Home", href: "/", icon: <HomeIcon /> }];
+  const menuItems = [
+    { name: "Home", href: "/", },
+    { name: "Profile", href: "/", },
+  ];
   const profileMenuItems = [
     { label: "Profile", icon: <AccountCircle /> },
     { label: "Reservations", icon: <TableIcon /> },
