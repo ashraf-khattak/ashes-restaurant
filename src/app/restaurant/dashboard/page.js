@@ -14,7 +14,6 @@ const Dashboard = () => {
       <RestaurantHeader />
       <Box sx={{ gap: 2, mb: 10 }}>
         <Button
-          // type="submit"
           variant="contained"
           size="medium"
           onClick={() => setAddItem(true)}
