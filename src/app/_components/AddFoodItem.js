@@ -87,7 +87,8 @@ const AddFoodItems = () => {
 
       // Send data to API
       const response = await fetch(
-        "http://localhost:3000/api/restaurant/foods",
+        // "http://localhost:3000/api/restaurant/foods",
+        "/api/restaurant/foods",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

@@ -42,13 +42,14 @@ const RestaurantLogin = () => {
     const isValid = validateForm();
     if (!isValid) return;
 
-    const res = await fetch("http://localhost:3000/api/restaurant", {
+    // const res = await fetch("http://localhost:3000/api/restaurant", {
+    const response = await fetch("/api/restaurant", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password, login: true }),
     });
 
-    const result = await res.json();
+    const result = await response.json();
 
     if (result.success) {
       const { result: user } = result;

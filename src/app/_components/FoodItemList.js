@@ -39,9 +39,11 @@ const FoodItemList = () => {
 
       const resto_id = restaurantData._id; // Fixed: Added const declaration
 
-      let response = await fetch(
-        "http://localhost:3000/api/restaurant/foods/" + resto_id
-      );
+      // let response = await fetch(
+      //   "http://localhost:3000/api/restaurant/foods/" + resto_id
+      // );
+      // let response = await fetch("/api/restaurant/foods/" + resto_id);
+      let response = await fetch(`/api/restaurant/foods/${resto_id}`);
 
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
