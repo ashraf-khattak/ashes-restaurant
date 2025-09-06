@@ -73,16 +73,19 @@ const RestaurantLogin = () => {
         maxWidth: 1000,
         mx: "auto",
         mt: 4,
-        backgroundImage:
-          "url('https://b.zmtcdn.com/data/pictures/8/19475178/0ee7d3ca6c321c2e1ec61042f1a3d056.jpg?fit=around|960:500&crop=960:500;*,*');",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundBlendMode: "overlay",
+        // backgroundImage:
+        //   "url('https://b.zmtcdn.com/data/pictures/8/19475178/0ee7d3ca6c321c2e1ec61042f1a3d056.jpg?fit=around|960:500&crop=960:500;*,*');",
+        // backgroundSize: "cover",
+        // backgroundPosition: "center",
+        // backgroundBlendMode: "overlay",
         color: "white",
-        backgroundColor: "#362c2ce9",
+        // backgroundColor: "#362c2ce9",
+        backgroundColor:"rgba(13, 13, 18, 0.54)",
+        // border:"1px solid #000",3.
+
         borderRadius: "16px",
         boxShadow:
-          "0 10px 30px rgba(197, 51, 180, 0.2), 0 6px 10px rgba(0, 0, 0, 0.15)",
+          "0 0 10px 10px rgba(0, 0, 0, 0.66)",
       }}
     >
       <Typography
