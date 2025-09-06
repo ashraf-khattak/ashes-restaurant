@@ -10,6 +10,7 @@ import {
   Alert,
   Paper,
   InputAdornment,
+  CircularProgress,
 } from "@mui/material";
 import {
   AttachMoney,
@@ -201,20 +202,15 @@ const AddFoodItems = () => {
     <Paper
       elevation={3}
       sx={{
-        p: 4,
+        px: { xs: 1, sm: 3 },
+        py: 3,
         maxWidth: 800,
         mx: "auto",
         mt: 4,
-        backgroundImage:
-          "url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80');",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundBlendMode: "overlay",
         color: "white",
-        backgroundColor: "#362c2ce9",
+        backgroundColor: "rgba(13, 13, 18, 0.54)",
         borderRadius: "16px",
-        boxShadow:
-          "0 10px 30px rgba(197, 51, 180, 0.2), 0 6px 10px rgba(0, 0, 0, 0.15)",
+        boxShadow: "0 0 10px 10px #ffffff57",
       }}
     >
       <Typography
@@ -339,22 +335,30 @@ const AddFoodItems = () => {
           type="submit"
           variant="contained"
           size="medium"
-          disabled={loading}
+          disabled={loading} // Disable button when loading
           sx={{
             gridColumn: "1 / -1",
-            mt: 2,
+            mt: 3,
+            mb: 2,
             py: 1.5,
-            backgroundColor: loading ? "#cccccc" : "#18FFFF",
+            borderRadius: 8,
+            backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#18FFFF", // Change color when loading
             color: "black",
             fontWeight: "bold",
             "&:hover": {
-              backgroundColor: loading ? "#cccccc" : "#00e5e5",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+              backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#00e5e5",
             },
-            transition: "all 0.3s ease",
+            "&.Mui-disabled": {
+              backgroundColor: "rgba(24, 255, 255, 0.5)",
+              color: "rgba(0, 0, 0, 0.7)",
+            },
           }}
         >
-          {loading ? "Adding Food Item..." : "Add Food Item"}
+          {loading ? (
+            <CircularProgress size={24} sx={{ color: "#18FFFF" }} /> // Show spinner when loading
+          ) : (
+            "Add Food Item"
+          )}
         </Button>
       </Box>
     </Paper>

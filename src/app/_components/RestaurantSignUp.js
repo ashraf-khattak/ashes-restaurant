@@ -11,6 +11,7 @@ import {
   Paper,
   InputAdornment,
   IconButton,
+  CircularProgress,
 } from "@mui/material";
 import {
   Visibility,
@@ -37,6 +38,7 @@ const RestaurantSignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false); // Added loading state
   const router = useRouter();
 
   const handleChange = (field) => (event) => {
@@ -78,22 +80,28 @@ const RestaurantSignUp = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!validate()) return;
+    setLoading(true); // Set loading to true when submission starts
+    try {
+      // const response = await fetch("http://localhost:3000/api/restaurant", {
+      const response = await fetch("/api/restaurant", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    // const response = await fetch("http://localhost:3000/api/restaurant", {
-    const response = await fetch("/api/restaurant", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-
-    const result = await response.json();
-    if (result.success) {
-      const { result: user } = result;
-      delete user.password;
-      localStorage.setItem("restaurantUser", JSON.stringify(user));
-      router.push("/restaurant/dashboard");
-    } else {
-      setErrors({ api: result.message || "Registration failed." });
+      const result = await response.json();
+      if (result.success) {
+        const { result: user } = result;
+        delete user.password;
+        localStorage.setItem("restaurantUser", JSON.stringify(user));
+        router.push("/restaurant/dashboard");
+      } else {
+        setErrors({ api: result.message || "Registration failed." });
+      }
+    } catch (error) {
+      setErrors({ api: "An error occurred. Please try again." });
+    } finally {
+      setLoading(false); // Set loading to false when submission completes
     }
   };
 
@@ -308,6 +316,7 @@ const RestaurantSignUp = () => {
         )}
 
         <Button
+          disabled={loading} // Disable button when loading
           type="submit"
           variant="contained"
           size="medium"
@@ -318,16 +327,19 @@ const RestaurantSignUp = () => {
             backgroundColor: "#18FFFF",
             color: "black",
             fontWeight: "bold",
-            // width: "50%",
+            borderRadius: 8,
             "&:hover": {
               backgroundColor: "#00e5e5",
-              // transform: "translateY(-2px)",
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
             },
-            transition: "all 0.3s ease",
+            // transition: "all 0.3s ease",
           }}
         >
-          Create Account
+          {loading ? (
+            <CircularProgress size={24} sx={{ color: "#18FFFF" }} /> // Show spinner when loading
+          ) : (
+            "Create Account"
+          )}
         </Button>
       </Box>
     </Paper>

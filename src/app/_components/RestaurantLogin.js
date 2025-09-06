@@ -11,6 +11,7 @@ import {
   Paper,
   InputAdornment,
   IconButton,
+  CircularProgress,
 } from "@mui/material";
 import { Visibility, VisibilityOff, Email, Lock } from "@mui/icons-material";
 
@@ -19,6 +20,7 @@ const RestaurantLogin = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false); // Added loading state
   const router = useRouter();
 
   const validateForm = () => {
@@ -41,23 +43,29 @@ const RestaurantLogin = () => {
 
     const isValid = validateForm();
     if (!isValid) return;
+    setLoading(true); // Set loading to true when submission starts
+    try {
+      // const res = await fetch("http://localhost:3000/api/restaurant", {
+      const response = await fetch("/api/restaurant", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password, login: true }),
+      });
 
-    // const res = await fetch("http://localhost:3000/api/restaurant", {
-    const response = await fetch("/api/restaurant", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password, login: true }),
-    });
+      const result = await response.json();
 
-    const result = await response.json();
-
-    if (result.success) {
-      const { result: user } = result;
-      delete user.password;
-      localStorage.setItem("restaurantUser", JSON.stringify(user));
-      router.push("/restaurant/dashboard");
-    } else {
-      setErrors({ api: result.message || "Login failed. Please try again." });
+      if (result.success) {
+        const { result: user } = result;
+        delete user.password;
+        localStorage.setItem("restaurantUser", JSON.stringify(user));
+        router.push("/restaurant/dashboard");
+      } else {
+        setErrors({ api: result.message || "Login failed. Please try again." });
+      }
+    } catch (error) {
+      setErrors({ api: "An error occurred. Please try again." });
+    } finally {
+      setLoading(false); // Set loading to false when submission completes
     }
   };
 
@@ -73,19 +81,10 @@ const RestaurantLogin = () => {
         maxWidth: 1000,
         mx: "auto",
         mt: 4,
-        // backgroundImage:
-        //   "url('https://b.zmtcdn.com/data/pictures/8/19475178/0ee7d3ca6c321c2e1ec61042f1a3d056.jpg?fit=around|960:500&crop=960:500;*,*');",
-        // backgroundSize: "cover",
-        // backgroundPosition: "center",
-        // backgroundBlendMode: "overlay",
         color: "white",
-        // backgroundColor: "#362c2ce9",
-        backgroundColor:"rgba(13, 13, 18, 0.54)",
-        // border:"1px solid #000",3.
-
+        backgroundColor: "rgba(13, 13, 18, 0.54)",
         borderRadius: "16px",
-        boxShadow:
-          "0 0 10px 10px rgba(0, 0, 0, 0.66)",
+        boxShadow: "0 0 10px 10px #ffffff57",
       }}
     >
       <Typography
@@ -228,24 +227,34 @@ const RestaurantLogin = () => {
             {errors.api}
           </Alert>
         )}
-
         <Button
           type="submit"
           variant="contained"
           size="medium"
+          disabled={loading} // Disable button when loading
           sx={{
             mt: 3,
             mb: 2,
             py: 1.5,
             width: "50%",
-            backgroundColor: "#18FFFF",
+            borderRadius: 8,
+            backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#18FFFF", // Change color when loading
             color: "black",
+            fontWeight: "bold",
             "&:hover": {
-              backgroundColor: "#00e5e5",
+              backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#00e5e5",
+            },
+            "&.Mui-disabled": {
+              backgroundColor: "rgba(24, 255, 255, 0.5)",
+              color: "rgba(0, 0, 0, 0.7)",
             },
           }}
         >
-          Login
+          {loading ? (
+            <CircularProgress size={24} sx={{ color: "#18FFFF" }} /> // Show spinner when loading
+          ) : (
+            "Login"
+          )}
         </Button>
       </Box>
     </Paper>

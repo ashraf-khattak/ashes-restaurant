@@ -28,7 +28,7 @@ const RestaurantFooter = () => {
     <Box
       component="footer"
       sx={{
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: "#000",
         color: theme.palette.primary.contrastText,
         py: 6,
         mt: "auto",

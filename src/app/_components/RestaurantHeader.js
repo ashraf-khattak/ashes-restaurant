@@ -46,7 +46,8 @@ const StickyAppBar = ({ children }) => {
 
 // Styled components
 const GradientAppBar = styled(AppBar)(({ theme }) => ({
-  background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
+  // background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
+  backgroundColor: "#000",
   boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
   padding: theme.spacing(0.5, 0),
 }));
@@ -66,7 +67,8 @@ const StyledButton = styled(Button)(({ theme }) => ({
 const StyledDrawer = styled(Drawer)(({ theme }) => ({
   "& .MuiDrawer-paper": {
     width: 300,
-    background: `linear-gradient(180deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
+    // background: `linear-gradient(180deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
+    backgroundColor: "#000",
     color: "white",
   },
 }));
@@ -101,8 +103,8 @@ const RestaurantHeader = () => {
   };
 
   const menuItems = [
-    { name: "Home", href: "/", },
-    { name: "Profile", href: "/", },
+    { name: "Home", href: "/" },
+    { name: "Profile", href: "/" },
   ];
   const profileMenuItems = [
     { label: "Profile", icon: <AccountCircle /> },
@@ -147,9 +149,13 @@ const RestaurantHeader = () => {
           variant="contained"
           sx={{
             ml: 2,
-            bgcolor: "white",
-            color: "primary.main",
-            "&:hover": { bgcolor: "grey.100" },
+            borderRadius: 8,
+            backgroundColor: "#18FFFF",
+            color: "black",
+            fontWeight: "bold",
+            "&:hover": {
+              backgroundColor: "#00e5e5",
+            },
           }}
         >
           Restaurant Login
@@ -289,8 +295,13 @@ const RestaurantHeader = () => {
             variant="contained"
             sx={{
               bgcolor: "white",
-              color: "primary.main",
-              "&:hover": { bgcolor: "grey.100" },
+              borderRadius: 8,
+              backgroundColor: "#18FFFF",
+              color: "black",
+              fontWeight: "bold",
+              "&:hover": {
+                backgroundColor: "#00e5e5",
+              },
             }}
           >
             Restaurant Login

@@ -15,9 +15,9 @@ const Restaurant = () => {
         <RestaurantHeader />
         <Box
           sx={{
-            // p: 4,
+            p: 1,
             // maxWidth: 1000,
-            height: "80vh",
+            minHeight: "80vh",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -43,9 +43,14 @@ const Restaurant = () => {
           </Box>
           <Button
             className="button-link"
+            variant="outlined"
             onClick={() => setIsLogin(!isLogin)}
             sx={{
-              color: "#fff",
+              color: "#ce16efff",
+              mt: 2,
+              border: "transparent",
+              backgroundColor: "rgba(214, 214, 218, 0.8)",
+              alignItems: "left",
             }}
           >
             {isLogin

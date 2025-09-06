@@ -104,19 +104,7 @@ const FoodItemList = () => {
   }
 
   return (
-    <Box sx={{ padding: 3 }}>
-      <Typography
-        variant="h4"
-        component="h2"
-        sx={{
-          marginBottom: 3,
-          fontWeight: 600,
-          color: "primary.main",
-          textAlign: "center",
-        }}
-      >
-        Menu Items
-      </Typography>
+    <Box sx={{ px: { xs: 0.5, sm: 2 }, pb: 3 }}>
 
       {foodItems.length === 0 ? (
         <Typography sx={{ textAlign: "center", padding: 3 }}>
@@ -133,7 +121,7 @@ const FoodItemList = () => {
         >
           <Table sx={{ minWidth: 650 }} aria-label="food items table">
             <TableHead>
-              <TableRow sx={{ backgroundColor: "primary.main" }}>
+              <TableRow sx={{ backgroundColor: "#000000a5" }}>
                 <TableCell
                   sx={{ color: "white", fontSize: 16, fontWeight: 600 }}
                 >
@@ -232,23 +220,25 @@ const FoodItemList = () => {
                   >
                     ${item.price?.toFixed(2)}
                   </TableCell>
-                  <TableCell align="center">
+                  <TableCell align="center" sx={{ gap: 1 }}>
                     <IconButton
+                      size="small"
                       color="primary"
                       onClick={() => handleEdit(item._id || item.id)}
                       aria-label="edit"
                       sx={{
-                        backgroundColor: "primary.light",
+                        backgroundColor: "#03f917c1",
                         color: "white",
                         marginRight: 1,
                         "&:hover": {
-                          backgroundColor: "primary.dark",
+                          backgroundColor: "#049f11ff",
                         },
                       }}
                     >
-                      <Edit />
+                      <Edit size="small" />
                     </IconButton>
                     <IconButton
+                      size="small"
                       color="error"
                       onClick={() => handleDelete(item._id || item.id)}
                       aria-label="delete"
@@ -260,7 +250,7 @@ const FoodItemList = () => {
                         },
                       }}
                     >
-                      <Delete />
+                      <Delete fontSize="small" />
                     </IconButton>
                   </TableCell>
                 </TableRow>
