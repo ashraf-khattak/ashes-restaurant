@@ -82,7 +82,7 @@ const Dashboard = () => {
         </Box>
 
         {/* Content Section */}
-        <Box sx={{}}>{addItem ? <AddFoodItems /> : <FoodItemList />}</Box>
+        <Box sx={{}}>{addItem ? <AddFoodItems setAddItem={setAddItem} /> : <FoodItemList />}</Box>
       </Box>
 
       <RestaurantFooter />

@@ -19,7 +19,7 @@ import {
   Link,
 } from "@mui/icons-material";
 
-const AddFoodItems = () => {
+const AddFoodItems = (props) => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -101,7 +101,8 @@ const AddFoodItems = () => {
 
       if (result.success) {
         alert("Food item added successfully!");
-        router.push("/restaurant/dashboard");
+        props.setAddItem(false)
+        // router.push("/restaurant/dashboard");
       } else {
         setErrors({ api: result.message || "Failed to add food item" });
       }
