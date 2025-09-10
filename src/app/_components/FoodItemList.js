@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const {
@@ -19,6 +20,7 @@ const {
 const { Edit, Delete } = require("@mui/icons-material");
 
 const FoodItemList = () => {
+  const router = useRouter();
   const [foodItems, setFoodItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -265,7 +267,10 @@ const FoodItemList = () => {
                         <IconButton
                           size="small"
                           color="primary"
-                          onClick={() => handleEdit(item._id || item.id)}
+                          onClick={() =>
+                            router.push(`dashboard/${item._id || item.id}`)
+                          }
+                          // onClick={() => handleEdit(item._id || item.id)}
                           aria-label="edit"
                           sx={{
                             backgroundColor: "#03f917c1",
