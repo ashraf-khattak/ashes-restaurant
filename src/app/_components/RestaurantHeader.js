@@ -47,8 +47,10 @@ const StickyAppBar = ({ children }) => {
 // Styled components
 const GradientAppBar = styled(AppBar)(({ theme }) => ({
   // background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.dark} 100%)`,
-  backgroundColor: "#000",
-  boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+  // backgroundColor: "#000",
+  // boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+  background: "linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)",
+  boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
   padding: theme.spacing(0.5, 0),
 }));
 
