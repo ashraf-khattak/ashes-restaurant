@@ -264,96 +264,135 @@ const RestaurantSignUp = () => {
         Sign Up
       </Typography>
 
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{
-          display: "grid",
-          gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-          gap: 2,
-        }}
-      >
-        {formFields.map((field) => (
-          <TextField
-            key={field.id}
-            label={field.label}
-            type={field.type}
-            value={formData[field.id]}
-            multiline={field.multiline}
-            rows={field.rows}
-            onChange={handleChange(field.id)}
-            error={!!errors[field.id]}
-            helperText={errors[field.id]}
-            size="small"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">{field.icon}</InputAdornment>
-              ),
-              endAdornment: field.endAdornment || null,
-            }}
-            sx={{
-              gridColumn: field.gridProps || {},
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white",
+      <Box component="form" onSubmit={handleSubmit}>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+            gap: 2,
+          }}
+        >
+          {formFields.map((field) => (
+            <TextField
+              key={field.id}
+              label={field.label}
+              type={field.type}
+              value={formData[field.id]}
+              multiline={field.multiline}
+              rows={field.rows}
+              onChange={handleChange(field.id)}
+              error={!!errors[field.id]}
+              helperText={errors[field.id]}
+              size="small"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">{field.icon}</InputAdornment>
+                ),
+                endAdornment: field.endAdornment || null,
+              }}
+              sx={{
+                gridColumn: field.gridProps || {},
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "white",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "white",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#18FFFF",
+                  },
+                  color: "white",
                 },
-                "&:hover fieldset": {
-                  borderColor: "white",
+                "& .MuiInputLabel-root": {
+                  color: "white",
                 },
-                "&.Mui-focused fieldset": {
-                  borderColor: "#18FFFF",
+                "& .MuiFormHelperText-root": {
+                  color: errors[field.id]
+                    ? "#f44336"
+                    : "rgba(255, 255, 255, 0.7)",
                 },
-                color: "white",
-              },
-              "& .MuiInputLabel-root": {
-                color: "white",
-              },
-              "& .MuiFormHelperText-root": {
-                color: errors[field.id]
-                  ? "#f44336"
-                  : "rgba(255, 255, 255, 0.7)",
-              },
-            }}
-          />
-        ))}
+              }}
+            />
+          ))}
 
-        {errors.api && (
-          <Alert
-            severity="error"
+          {/* <Button
+            disabled={loading} // Disable button when loading
+            type="submit"
+            variant="contained"
+            size="small"
             sx={{
               gridColumn: "1 / -1",
-              mt: 1,
-              "& .MuiAlert-message": { color: "white" },
+              mt: 2,
+              py: 0.5,
+              backgroundColor: "#18FFFF",
+              color: "black",
+              fontWeight: "bold",
+              borderRadius: 8,
+              "&:hover": {
+                backgroundColor: "#00e5e5",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+              },
+              // transition: "all 0.3s ease",
             }}
           >
-            {errors.api}
-          </Alert>
-        )}
-
+            {loading ? (
+              <CircularProgress size={24} sx={{ color: "#18FFFF" }} /> // Show spinner when loading
+            ) : (
+              "Create Account"
+            )}
+          </Button> */}
+        </Box>
         <Button
-          disabled={loading} // Disable button when loading
           type="submit"
-          variant="contained"
+          variant="outlined"
           size="small"
+          disabled={loading} // Disable button when loading
+          // sx={{
+          //   gridColumn: "1 / -1",
+          //   mt: 3,
+          //   mb: 2,
+          //   py: .5,
+          //   borderRadius: 8,
+          //   backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#18FFFF", // Change color when loading
+          //   color: "black",
+          //   fontWeight: "bold",
+          //   "&:hover": {
+          //     backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#00e5e5",
+          //   },
+          //   "&.Mui-disabled": {
+          //     backgroundColor: "rgba(24, 255, 255, 0.5)",
+          //     color: "rgba(0, 0, 0, 0.7)",
+          //   },
+          // }}
           sx={{
             gridColumn: "1 / -1",
-            mt: 2,
-            py: 0.5,
-            backgroundColor: "#18FFFF",
-            color: "black",
-            fontWeight: "bold",
-            borderRadius: 8,
+            my: 3,
+            px: 2,
+            py: 1,
+            width: "75%",
+            border: "2px solid #18FFFF",
+            color: "#18FFFF",
+            borderRadius: 2,
+            fontWeight: 600,
+            fontSize: "14px",
+            boxShadow: "0 0 10px 7px #ffffff57",
             "&:hover": {
-              backgroundColor: "#00e5e5",
-              boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
+              backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#00e5e5",
+              border: "2px solid #000000ff",
+              boxShadow: "0 0 9px 6px #ffffffb9",
+              color: "#000",
             },
-            // transition: "all 0.3s ease",
+            "&.Mui-disabled": {
+              backgroundColor: "rgba(24, 255, 255, 0.5)",
+              color: "rgba(0, 0, 0, 0.7)",
+            },
           }}
         >
           {loading ? (
             <CircularProgress size={24} sx={{ color: "#18FFFF" }} /> // Show spinner when loading
           ) : (
-            "Create Account"
+             "Create Account"
           )}
         </Button>
       </Box>

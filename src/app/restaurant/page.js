@@ -66,10 +66,11 @@ const Restaurant = () => {
             variant="outlined"
             onClick={() => setIsLogin(!isLogin)}
             sx={{
-              color: "#ce16efff",
-              mt: 2,
-              border: "transparent",
-              backgroundColor: "rgba(214, 214, 218, 0.8)",
+              color: "#00e5e5",
+              mt: 4,
+              // border: "transparent",
+              border: "2px solid #18FFFF",
+              backgroundColor: "rgba(21, 21, 21, 0.54)",
               alignItems: "left",
             }}
           >

@@ -65,7 +65,7 @@ export default function Home() {
               mx: "auto",
               p: 1,
               borderRadius: { xs: 4, md: 8 },
-              width: { xs: "100%", md: "40%" },
+              width: { xs: "100%", md: "60%", lg: "50%" },
 
               // gradient border with animation
               border: "4px solid transparent",

@@ -101,7 +101,7 @@ const AddFoodItems = (props) => {
 
       if (result.success) {
         alert("Food item added successfully!");
-        props.setAddItem(false)
+        props.setAddItem(false);
         // router.push("/restaurant/dashboard");
       } else {
         setErrors({ api: result.message || "Failed to add food item" });
@@ -242,113 +242,121 @@ const AddFoodItems = (props) => {
       >
         Add New Food Item
       </Typography>
-
-      <Box
-        component="form"
-        onSubmit={handleSubmit}
-        sx={{
-          display: "grid",
-          gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
-          gap: 2,
-        }}
-      >
-        {formFields.map((field) => (
-          <TextField
-            key={field.id}
-            label={field.label}
-            type={field.type}
-            size="small"
-            value={formData[field.id]}
-            onChange={handleChange(field.id)}
-            error={!!errors[field.id]}
-            helperText={errors[field.id]}
-            multiline={field.multiline}
-            rows={field.rows}
-            placeholder={field.placeholder}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">{field.icon}</InputAdornment>
-              ),
-              inputProps: field.inputProps,
-            }}
-            sx={{
-              gridColumn: field.gridProps || {},
-              "& .MuiOutlinedInput-root": {
-                "& fieldset": {
-                  borderColor: "white",
-                },
-                "&:hover fieldset": {
-                  borderColor: "white",
-                },
-                "&.Mui-focused fieldset": {
-                  borderColor: "#18FFFF",
-                },
-                color: "white",
-              },
-              "& .MuiInputLabel-root": {
-                color: "white",
-              },
-              "& .MuiFormHelperText-root": {
-                color: errors[field.id]
-                  ? "#f44336"
-                  : "rgba(255, 255, 255, 0.7)",
-              },
-            }}
-          />
-        ))}
-
-        {/* Image Preview */}
-        {formData.imagePath && (
-          <Box sx={{ gridColumn: "1 / -1", textAlign: "center" }}>
-            <Typography variant="h6" sx={{ color: "#18FFFF", mb: 1 }}>
-              Image Preview
-            </Typography>
-            <Box
-              component="img"
-              src={formData.imagePath}
-              alt="Food preview"
-              sx={{
-                maxWidth: "100%",
-                maxHeight: 200,
-                borderRadius: "8px",
-                border: "2px solid #18FFFF",
+      <Box component="form" onSubmit={handleSubmit}>
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+            gap: 2,
+          }}
+        >
+          {formFields.map((field) => (
+            <TextField
+              key={field.id}
+              label={field.label}
+              type={field.type}
+              size="small"
+              value={formData[field.id]}
+              onChange={handleChange(field.id)}
+              error={!!errors[field.id]}
+              helperText={errors[field.id]}
+              multiline={field.multiline}
+              rows={field.rows}
+              placeholder={field.placeholder}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">{field.icon}</InputAdornment>
+                ),
+                inputProps: field.inputProps,
               }}
-              onError={(e) => {
-                e.target.style.display = "none";
+              sx={{
+                gridColumn: field.gridProps || {},
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "white",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "white",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#18FFFF",
+                  },
+                  color: "white",
+                },
+                "& .MuiInputLabel-root": {
+                  color: "white",
+                },
+                "& .MuiFormHelperText-root": {
+                  color: errors[field.id]
+                    ? "#f44336"
+                    : "rgba(255, 255, 255, 0.7)",
+                },
               }}
             />
-          </Box>
-        )}
+          ))}
 
-        {errors.api && (
-          <Alert
-            severity="error"
-            sx={{
-              gridColumn: "1 / -1",
-              mt: 1,
-              "& .MuiAlert-message": { color: "white" },
-            }}
-          >
-            {errors.api}
-          </Alert>
-        )}
-
+          {/* Image Preview */}
+          {formData.imagePath && (
+            <Box sx={{ gridColumn: "1 / -1", textAlign: "center" }}>
+              <Typography variant="h6" sx={{ color: "#18FFFF", mb: 1 }}>
+                Image Preview
+              </Typography>
+              <Box
+                component="img"
+                src={formData.imagePath}
+                alt="Food preview"
+                sx={{
+                  maxWidth: "100%",
+                  maxHeight: 200,
+                  borderRadius: "8px",
+                  border: "2px solid #18FFFF",
+                }}
+                onError={(e) => {
+                  e.target.style.display = "none";
+                }}
+              />
+            </Box>
+          )}
+        </Box>
         <Button
           type="submit"
-          variant="contained"
+          variant="outlined"
           size="small"
           disabled={loading} // Disable button when loading
+          // sx={{
+          //   gridColumn: "1 / -1",
+          //   mt: 3,
+          //   mb: 2,
+          //   py: .5,
+          //   borderRadius: 8,
+          //   backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#18FFFF", // Change color when loading
+          //   color: "black",
+          //   fontWeight: "bold",
+          //   "&:hover": {
+          //     backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#00e5e5",
+          //   },
+          //   "&.Mui-disabled": {
+          //     backgroundColor: "rgba(24, 255, 255, 0.5)",
+          //     color: "rgba(0, 0, 0, 0.7)",
+          //   },
+          // }}
           sx={{
             gridColumn: "1 / -1",
-            mt: 3,
-            mb: 2,
-            py: .5,
-            borderRadius: 8,
-            backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#18FFFF", // Change color when loading
-            color: "black",
-            fontWeight: "bold",
+            my: 3,
+            px: 2,
+            py: 1,
+            width: "75%",
+            border: "2px solid #18FFFF",
+            color: "#18FFFF",
+            borderRadius: 2,
+            fontWeight: 600,
+            fontSize: "14px",
+            boxShadow: "0 0 10px 7px #ffffff57",
             "&:hover": {
               backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#00e5e5",
+              border: "2px solid #000000ff",
+              boxShadow: "0 0 9px 6px #ffffffb9",
+              color: "#000",
             },
             "&.Mui-disabled": {
               backgroundColor: "rgba(24, 255, 255, 0.5)",

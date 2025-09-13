@@ -1,11 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import AddFoodItems from "@/app/_components/AddFoodItem";
 import FoodItemList from "@/app/_components/FoodItemList";
 import RestaurantFooter from "@/app/_components/RestaurantFooter";
 import RestaurantHeader from "@/app/_components/RestaurantHeader";
 import { Box, Button, Paper, Stack, Typography } from "@mui/material";
-import { useState } from "react";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const Dashboard = () => {
   const [addItem, setAddItem] = useState(false);
@@ -14,19 +15,8 @@ const Dashboard = () => {
       <RestaurantHeader />
 
       <Box
-        // sx={{
-        //   p: 1,
-        //   backgroundImage:
-        //     "url('https://b.zmtcdn.com/data/pictures/8/19475178/0ee7d3ca6c321c2e1ec61042f1a3d056.jpg?fit=around|960:500&crop=960:500;*,*');",
-        //   backgroundSize: "cover",
-        //   backgroundPosition: "center",
-        //   backgroundBlendMode: "overlay",
-        //   backgroundColor: "rgba(214, 214, 218, 0.8)",
-        // }}
         sx={{
           minHeight: "80vh",
-          // display: "flex",
-          // flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           textAlign: "center",
@@ -39,7 +29,8 @@ const Dashboard = () => {
           backgroundBlendMode: "Multiply",
           color: "white",
           py: { xs: 6, md: 15 },
-          px: { xs: 1, sm: 2, md: 10 },
+          // px: { xs: 1, sm: 2, md: 10 },
+          px: { xs: 1, sm: 2, md: 5, lg: 10, xl: 20 },
         }}
       >
         {/* Top Section */}
@@ -52,15 +43,69 @@ const Dashboard = () => {
             justifyContent: "space-between",
             alignItems: "center",
             justifyItems: "center",
-            mb: 4,
+            mb: 1,
           }}
         >
-          <Typography variant="h4" sx={{ fontWeight: 600, mb: 1 }}>
-            Menu
-          </Typography>
+          {!addItem ? (
+            <Typography variant="h5" sx={{ fontWeight: 600, mb: 1 }}>
+              Menu
+            </Typography>
+          ) : (
+            " "
+          )}
 
           <Stack direction="row" spacing={2}>
-            <Button
+            {addItem ? (
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={() => setAddItem(false)}
+                startIcon={<ArrowBackIcon />} // 👈 Back Icon
+                sx={{
+                  px: 2,
+                  py: 0.5,
+                  border: "2px solid #18FFFF",
+                  color: "#18FFFF",
+                  borderRadius: 2,
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  boxShadow: "0 0 10px 7px #ffffff57",
+                  "&:hover": {
+                    backgroundColor: "#00ffffff",
+                    border: "2px solid #000000ff",
+                    boxShadow: "0 0 9px 6px #ffffffb9",
+                    color: "#000",
+                  },
+                }}
+              >
+                Dashboard
+              </Button>
+            ) : (
+              <Button
+                variant="outlined"
+                size="small"
+                onClick={() => setAddItem(true)}
+                sx={{
+                  px: 2,
+                  py: 0.5,
+                  border: "2px solid #18FFFF",
+                  color: "#18FFFF",
+                  borderRadius: 2,
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  boxShadow: "0 0 10px 7px #ffffff57",
+                  "&:hover": {
+                    backgroundColor: "#00ffffff",
+                    border: "2px solid #000000ff",
+                    boxShadow: "0 0 9px 6px #ffffffb9",
+                    color: "#000",
+                  },
+                }}
+              >
+                Add Food
+              </Button>
+            )}
+            {/* <Button
               variant="contained"
               size="small"
               onClick={() => setAddItem(true)}
@@ -95,7 +140,7 @@ const Dashboard = () => {
               }}
             >
               Dashboard
-            </Button>
+            </Button> */}
           </Stack>
         </Box>
 
@@ -111,61 +156,6 @@ const Dashboard = () => {
 
       <RestaurantFooter />
     </Box>
-    // <Box>
-    //   <RestaurantHeader />
-    //   <Box sx={{ mb: 10 }}>
-    //     <Box sx={{ display: "flex" }}>
-    //       <Typography>menu</Typography>
-    //       <Box sx={{ gap: 2 }}>
-    //         <Button
-    //           variant="contained"
-    //           size="small"
-    //           onClick={() => setAddItem(true)}
-    //           sx={{
-    //             mt: 3,
-    //             mb: 2,
-    //             py: 1.5,
-    //             width: "10%",
-    //             backgroundColor: "#18FFFF",
-    //             color: "black",
-    //             "&:hover": {
-    //               backgroundColor: "#00e5e5",
-    //             },
-    //           }}
-    //         >
-    //           Add Food
-    //         </Button>
-    //         <Button
-    //           // type="submit"
-    //           variant="contained"
-    //           size="small"
-    //           onClick={() => setAddItem(false)}
-    //           sx={{
-    //             mt: 3,
-    //             mb: 2,
-    //             py: 1.5,
-    //             width: "10%",
-    //             backgroundColor: "#18FFFF",
-    //             color: "black",
-    //             "&:hover": {
-    //               backgroundColor: "#00e5e5",
-    //             },
-    //           }}
-    //         >
-    //           Dashboard
-    //         </Button>
-    //       </Box>
-    //     </Box>
-    //     {addItem ? (
-    //       <Box>
-    //         <AddFoodItems />
-    //       </Box>
-    //     ) : (
-    //       <FoodItemList />
-    //     )}
-    //   </Box>
-    //   <RestaurantFooter />
-    // </Box>
   );
 };
 export default Dashboard;

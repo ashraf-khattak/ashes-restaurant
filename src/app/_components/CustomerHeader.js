@@ -117,7 +117,11 @@ export default function CustomerHeader() {
                   borderRadius: 2,
                   px: 2,
                   "&:hover": {
-                    bgcolor: "rgba(255,255,255,0.2)",
+                    backgroundColor: "rgba(255,255,255,0.2)",
+                    // backgroundColor: "#00e5e5a4",
+                    // border: "2px solid #000000ff",
+                    boxShadow: "0 0 7px 4px #ffffffb9",
+                    color: "#fff",
                   },
                 }}
               >

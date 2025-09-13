@@ -126,125 +126,175 @@ const RestaurantLogin = () => {
       >
         Login
       </Typography>
+      <Box component="form" onSubmit={handleSubmit}>
+        <Box sx={{ mt: 2 }}>
+          <TextField
+            fullWidth
+            size="small"
+            margin="normal"
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+              setErrors((prev) => ({ ...prev, email: "", api: "" }));
+            }}
+            error={!!errors.email}
+            helperText={errors.email}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Email sx={{ color: "white" }} />
+                </InputAdornment>
+              ),
+            }}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "white",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "#18FFFF",
+                },
+                color: "white",
+              },
+              "& .MuiInputLabel-root": {
+                color: "white",
+              },
+              "& .MuiFormHelperText-root": {
+                color: errors.email ? "#f44336" : "rgba(255, 255, 255, 0.7)",
+              },
+            }}
+          />
 
-      <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
-        <TextField
-          fullWidth
-          size="small"
-          margin="normal"
-          label="Email"
-          type="email"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-            setErrors((prev) => ({ ...prev, email: "", api: "" }));
-          }}
-          error={!!errors.email}
-          helperText={errors.email}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Email sx={{ color: "white" }} />
-              </InputAdornment>
-            ),
-          }}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": {
-                borderColor: "white",
+          <TextField
+            fullWidth
+            size="small"
+            margin="normal"
+            label="Password"
+            type={showPassword ? "text" : "password"}
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setErrors((prev) => ({ ...prev, password: "", api: "" }));
+            }}
+            error={!!errors.password}
+            helperText={errors.password}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Lock sx={{ color: "white" }} />
+                </InputAdornment>
+              ),
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="toggle password visibility"
+                    onClick={handleClickShowPassword}
+                    edge="end"
+                    sx={{ color: "white" }}
+                  >
+                    {showPassword ? <VisibilityOff /> : <Visibility />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "white",
+                },
+                "&:hover fieldset": {
+                  borderColor: "white",
+                },
+                "&.Mui-focused fieldset": {
+                  borderColor: "#18FFFF",
+                },
+                color: "white",
               },
-              "&:hover fieldset": {
-                borderColor: "white",
+              "& .MuiInputLabel-root": {
+                color: "white",
               },
-              "&.Mui-focused fieldset": {
-                borderColor: "#18FFFF",
+              "& .MuiFormHelperText-root": {
+                color: errors.password ? "#f44336" : "rgba(255, 255, 255, 0.7)",
               },
-              color: "white",
-            },
-            "& .MuiInputLabel-root": {
-              color: "white",
-            },
-            "& .MuiFormHelperText-root": {
-              color: errors.email ? "#f44336" : "rgba(255, 255, 255, 0.7)",
-            },
-          }}
-        />
-
-        <TextField
-          fullWidth
-          size="small"
-          margin="normal"
-          label="Password"
-          type={showPassword ? "text" : "password"}
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-            setErrors((prev) => ({ ...prev, password: "", api: "" }));
-          }}
-          error={!!errors.password}
-          helperText={errors.password}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Lock sx={{ color: "white" }} />
-              </InputAdornment>
-            ),
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  edge="end"
-                  sx={{ color: "white" }}
-                >
-                  {showPassword ? <VisibilityOff /> : <Visibility />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          sx={{
-            "& .MuiOutlinedInput-root": {
-              "& fieldset": {
-                borderColor: "white",
+            }}
+          />
+          {/* 
+          <Button
+            type="submit"
+            variant="contained"
+            size="small"
+            disabled={loading} // Disable button when loading
+            sx={{
+              mt: 3,
+              mb: 2,
+              py: 0.5,
+              width: "50%",
+              borderRadius: 8,
+              backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#18FFFF", // Change color when loading
+              color: "black",
+              fontWeight: "bold",
+              "&:hover": {
+                backgroundColor: loading
+                  ? "rgba(24, 255, 255, 0.7)"
+                  : "#00e5e5",
               },
-              "&:hover fieldset": {
-                borderColor: "white",
+              "&.Mui-disabled": {
+                backgroundColor: "rgba(24, 255, 255, 0.5)",
+                color: "rgba(0, 0, 0, 0.7)",
               },
-              "&.Mui-focused fieldset": {
-                borderColor: "#18FFFF",
-              },
-              color: "white",
-            },
-            "& .MuiInputLabel-root": {
-              color: "white",
-            },
-            "& .MuiFormHelperText-root": {
-              color: errors.password ? "#f44336" : "rgba(255, 255, 255, 0.7)",
-            },
-          }}
-        />
-
-        {errors.api && (
-          <Alert severity="error" sx={{ mt: 2 }}>
-            {errors.api}
-          </Alert>
-        )}
+            }}
+          >
+            {loading ? (
+              <CircularProgress size={24} sx={{ color: "#18FFFF" }} /> // Show spinner when loading
+            ) : (
+              "Login"
+            )}
+          </Button> */}
+        </Box>
         <Button
           type="submit"
-          variant="contained"
+          variant="outlined"
           size="small"
           disabled={loading} // Disable button when loading
+          // sx={{
+          //   gridColumn: "1 / -1",
+          //   mt: 3,
+          //   mb: 2,
+          //   py: .5,
+          //   borderRadius: 8,
+          //   backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#18FFFF", // Change color when loading
+          //   color: "black",
+          //   fontWeight: "bold",
+          //   "&:hover": {
+          //     backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#00e5e5",
+          //   },
+          //   "&.Mui-disabled": {
+          //     backgroundColor: "rgba(24, 255, 255, 0.5)",
+          //     color: "rgba(0, 0, 0, 0.7)",
+          //   },
+          // }}
           sx={{
-            mt: 3,
-            mb: 2,
-            py: .5,
-            width: "50%",
-            borderRadius: 8,
-            backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#18FFFF", // Change color when loading
-            color: "black",
-            fontWeight: "bold",
+            gridColumn: "1 / -1",
+            my: 3,
+            px: 2,
+            py: 1,
+            width: "75%",
+            border: "2px solid #18FFFF",
+            color: "#18FFFF",
+            borderRadius: 2,
+            fontWeight: 600,
+            fontSize: "14px",
+            boxShadow: "0 0 10px 7px #ffffff57",
             "&:hover": {
               backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#00e5e5",
+              border: "2px solid #000000ff",
+              boxShadow: "0 0 9px 6px #ffffffb9",
+              color: "#000",
             },
             "&.Mui-disabled": {
               backgroundColor: "rgba(24, 255, 255, 0.5)",
@@ -258,6 +308,11 @@ const RestaurantLogin = () => {
             "Login"
           )}
         </Button>
+        {errors.api && (
+          <Alert severity="error" sx={{ mt: 2 }}>
+            {errors.api}
+          </Alert>
+        )}
       </Box>
     </Paper>
   );

@@ -148,7 +148,7 @@ const FoodItemList = () => {
 
   return (
     <>
-      <Box sx={{ px: { xs: 0.5, sm: 2, md: 6, lg: 10 }, pb: 3 }}>
+      <Box sx={{  pb: 3 }}>
         {foodItems.length === 0 ? (
           <Typography sx={{ textAlign: "center", padding: 3 }}>
             No food items found.
