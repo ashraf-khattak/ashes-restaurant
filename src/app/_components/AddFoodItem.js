@@ -257,6 +257,7 @@ const AddFoodItems = (props) => {
             key={field.id}
             label={field.label}
             type={field.type}
+            size="small"
             value={formData[field.id]}
             onChange={handleChange(field.id)}
             error={!!errors[field.id]}
@@ -335,13 +336,13 @@ const AddFoodItems = (props) => {
         <Button
           type="submit"
           variant="contained"
-          size="medium"
+          size="small"
           disabled={loading} // Disable button when loading
           sx={{
             gridColumn: "1 / -1",
             mt: 3,
             mb: 2,
-            py: 1.5,
+            py: .5,
             borderRadius: 8,
             backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#18FFFF", // Change color when loading
             color: "black",

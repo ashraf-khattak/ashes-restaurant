@@ -185,6 +185,8 @@ const RestaurantSignUp = () => {
       id: "address",
       label: "Full Address",
       type: "text",
+      multiline: true,
+      rows: 2,
       icon: <Home sx={{ color: "white" }} />,
       gridProps: { xs: "1 / -1", md: "1 / -1" },
     },
@@ -193,22 +195,32 @@ const RestaurantSignUp = () => {
   return (
     <Paper
       elevation={3}
+      // sx={{
+      //   p: 4,
+      //   maxWidth: 1000,
+      //   mx: "auto",
+      //   mt: 4,
+      //   backgroundImage:
+      //     "url('https://b.zmtcdn.com/data/pictures/8/19475178/0ee7d3ca6c321c2e1ec61042f1a3d056.jpg?fit=around|960:500&crop=960:500;*,*');",
+      //   backgroundSize: "cover",
+      //   backgroundPosition: "center",
+      //   backgroundBlendMode: "overlay",
+      //   color: "white",
+      //   // opacity: .5,
+      //   backgroundColor: "#362c2ce9",
+      //   borderRadius: "16px",
+      //   boxShadow:
+      //     "0 10px 30px rgba(197, 51, 180, 0.2), 0 6px 10px rgba(0, 0, 0, 0.15)",
+      // }}
       sx={{
         p: 4,
         maxWidth: 1000,
         mx: "auto",
         mt: 4,
-        backgroundImage:
-          "url('https://b.zmtcdn.com/data/pictures/8/19475178/0ee7d3ca6c321c2e1ec61042f1a3d056.jpg?fit=around|960:500&crop=960:500;*,*');",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundBlendMode: "overlay",
         color: "white",
-        // opacity: .5,
-        backgroundColor: "#362c2ce9",
+        backgroundColor: "rgba(13, 13, 18, 0.54)",
         borderRadius: "16px",
-        boxShadow:
-          "0 10px 30px rgba(197, 51, 180, 0.2), 0 6px 10px rgba(0, 0, 0, 0.15)",
+        boxShadow: "0 0 10px 10px #ffffff57",
       }}
     >
       <Typography
@@ -267,9 +279,12 @@ const RestaurantSignUp = () => {
             label={field.label}
             type={field.type}
             value={formData[field.id]}
+            multiline={field.multiline}
+            rows={field.rows}
             onChange={handleChange(field.id)}
             error={!!errors[field.id]}
             helperText={errors[field.id]}
+            size="small"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">{field.icon}</InputAdornment>
@@ -319,11 +334,11 @@ const RestaurantSignUp = () => {
           disabled={loading} // Disable button when loading
           type="submit"
           variant="contained"
-          size="medium"
+          size="small"
           sx={{
             gridColumn: "1 / -1",
             mt: 2,
-            py: 1.5,
+            py: 0.5,
             backgroundColor: "#18FFFF",
             color: "black",
             fontWeight: "bold",

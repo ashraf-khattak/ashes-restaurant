@@ -14,17 +14,19 @@ const navLinks = [
   { title: "Login", path: "/login" },
   { title: "Sign Up", path: "/signup" },
   { title: "Cart", path: "/cart" },
-  { title: "Add Restaurant", path: "/add-restaurant" },
+  { title: "Add Restaurant", path: "/restaurant" },
 ];
 
 export default function RestaurantFooter() {
   return (
     <Box
-      component="footer"
+      // component="footer"
       sx={{
-        mt: 5,
-        bgcolor: "linear-gradient(90deg, #2575fc 0%, #6a11cb 100%)",
-        background: "linear-gradient(90deg, #2575fc 0%, #6a11cb 100%)",
+        // mt: 5,
+        // bgcolor: "linear-gradient(90deg, #2575fc 0%, #6a11cb 100%)",
+        // background: "linear-gradient(90deg, #2575fc 0%, #6a11cb 100%)",
+        background:
+          "linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, #6a11cb 70%, #2574fce1 100%)",
         color: "white",
         pt: 6,
         pb: 3,
@@ -33,14 +35,14 @@ export default function RestaurantFooter() {
       <Container maxWidth="lg">
         <Grid container spacing={5}>
           {/* Logo + Info */}
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={2}>
             <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
               <RestaurantIcon sx={{ mr: 1, fontSize: 28 }} />
               <Typography variant="h6" fontWeight="bold">
                 Foodies
               </Typography>
             </Box>
-            <Typography variant="body2" sx={{ opacity: 0.8 }}>
+            <Typography variant="body2" sx={{ opacity: 0.8, width: "40%" }}>
               Your one-stop place for exploring and adding amazing restaurants.
               Fresh, fast, and delicious food experiences!
             </Typography>

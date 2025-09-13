@@ -25,7 +25,7 @@ const navLinks = [
   { title: "Home", path: "/" },
   { title: "Login", path: "/login" },
   { title: "Sign Up", path: "/signup" },
-  { title: "Add Restaurant", path: "/add-restaurant" },
+  { title: "Add Restaurant", path: "/restaurant" },
 ];
 
 export default function CustomerHeader() {
@@ -78,11 +78,14 @@ export default function CustomerHeader() {
       <AppBar
         position="static"
         sx={{
-          background: "linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)",
+          background:
+            // "linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, #6a11cb 100%)",
+            "linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, #6a11cb 70%, #2574fce1 100%)",
+          // background: "linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)",
           boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
         }}
       >
-        <Toolbar>
+        <Toolbar sx={{ mx: { xl: 15, lg: 10, md: 5, xs: 1 } }}>
           {/* Logo */}
           <RestaurantIcon sx={{ mr: 1, fontSize: 28 }} />
           <Typography
@@ -97,11 +100,11 @@ export default function CustomerHeader() {
               letterSpacing: 1,
             }}
           >
-            Foodies
+            Ashes Foodies
           </Typography>
 
           {/* Desktop Menu */}
-          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2, mr: 2 }}>
+          <Box sx={{ display: { xs: "none", md: "flex" }, gap: 1, mr: 1 }}>
             {navLinks.map((item) => (
               <Button
                 key={item.title}

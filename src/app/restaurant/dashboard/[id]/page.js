@@ -229,6 +229,7 @@ const EditFoodItems = (props) => {
                   key={field.id}
                   label={field.label}
                   type={field.type}
+                  size="small"
                   value={formData[field.id]}
                   onChange={handleChange(field.id)}
                   error={!!errors[field.id]}
@@ -300,12 +301,12 @@ const EditFoodItems = (props) => {
               <Button
                 type="submit"
                 variant="contained"
-                size="medium"
+                size="small"
                 disabled={loading}
                 sx={{
                   gridColumn: "1 / -1",
                   mt: 3,
-                  py: 1.5,
+                  py: 0.5,
                   borderRadius: 8,
                   backgroundColor: loading
                     ? "rgba(24, 255, 255, 0.7)"

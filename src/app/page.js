@@ -44,7 +44,7 @@ export default function Home() {
             backgroundColor: "rgba(0, 0, 0, 0.6)",
             backgroundBlendMode: "Multiply",
             color: "white",
-            py: { xs: 6, md: 10 },
+            py: { xs: 6, md: 15 },
             px: { xs: 1, sm: 2, md: 10 },
           }}
         >
@@ -63,13 +63,83 @@ export default function Home() {
               flexDirection: { xs: "column", md: "row" },
               alignItems: "center",
               mx: "auto",
-              background: "rgba(255,255,255,0.9)",
-              border: "1px solid #FFF",
               p: 1,
-              borderRadius: 8,
+              borderRadius: { xs: 4, md: 8 },
               width: { xs: "100%", md: "40%" },
+
+              // gradient border with animation
+              border: "4px solid transparent",
+              backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), 
+                      linear-gradient(45deg, #FF4081, #7C4DFF, #18FFFF)`,
+              backgroundOrigin: "border-box",
+              backgroundClip: "padding-box, border-box",
+              backgroundSize: "200% auto", // important for animation
+              animation: "gradientMove 6s linear infinite",
+
+              "@keyframes gradientMove": {
+                "0%": {
+                  backgroundPosition: "0% 50%",
+                },
+                "50%": {
+                  backgroundPosition: "100% 50%",
+                },
+                "100%": {
+                  backgroundPosition: "0% 50%",
+                },
+              },
             }}
           >
+            {/* <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              mx: "auto",
+              background: "rgba(255,255,255,0.9)",
+              p: 1,
+              borderRadius: { xs: 4, md: 8 },
+              width: { xs: "100%", md: "40%" },
+
+              // gradient border fix 👇
+              border: "4px solid transparent",
+              backgroundImage: `linear-gradient(white, white), 
+                      linear-gradient(90deg, #6a11cb 0%, #18FFFF 100%)`,
+              backgroundOrigin: "border-box",
+              backgroundClip: "padding-box, border-box",
+              // backgroundClip: "text",
+              // textFillColor: "transparent",
+              // WebkitBackgroundClip: "text",
+              // WebkitTextFillColor: "transparent",
+              // fontWeight: "bold",
+              // backgroundSize: "200% auto",
+              animation: "gradient 6s linear infinite",
+              "@keyframes gradient": {
+                "0%": {
+                  backgroundPosition: "0% 50%",
+                },
+                "50%": {
+                  backgroundPosition: "100% 50%",
+                },
+                "100%": {
+                  backgroundPosition: "0% 50%",
+                },
+              },
+            }}
+          > */}
+            {/* <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              mx: "auto",
+              background: "rgba(255,255,255,0.9)",
+              border:
+                `2px solid linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, #6a11cb 70%, #2574fce1 100%)`,
+              p: 1,
+              borderRadius: { xs: 4, md: 8 },
+              width: { xs: "100%", md: "40%" },
+            }}
+          > */}
             {/* Search Input */}
             <TextField
               size="small"
@@ -79,6 +149,7 @@ export default function Home() {
               variant="outlined"
               sx={{
                 flex: 1,
+                width: { xs: "100%", md: "70%" },
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": { border: "none" },
                 },

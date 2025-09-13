@@ -14,14 +14,32 @@ const Dashboard = () => {
       <RestaurantHeader />
 
       <Box
+        // sx={{
+        //   p: 1,
+        //   backgroundImage:
+        //     "url('https://b.zmtcdn.com/data/pictures/8/19475178/0ee7d3ca6c321c2e1ec61042f1a3d056.jpg?fit=around|960:500&crop=960:500;*,*');",
+        //   backgroundSize: "cover",
+        //   backgroundPosition: "center",
+        //   backgroundBlendMode: "overlay",
+        //   backgroundColor: "rgba(214, 214, 218, 0.8)",
+        // }}
         sx={{
-          p: 1,
+          minHeight: "80vh",
+          // display: "flex",
+          // flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
           backgroundImage:
             "url('https://b.zmtcdn.com/data/pictures/8/19475178/0ee7d3ca6c321c2e1ec61042f1a3d056.jpg?fit=around|960:500&crop=960:500;*,*');",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundBlendMode: "overlay",
-          backgroundColor: "rgba(214, 214, 218, 0.8)",
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          backgroundBlendMode: "Multiply",
+          color: "white",
+          py: { xs: 6, md: 15 },
+          px: { xs: 1, sm: 2, md: 10 },
         }}
       >
         {/* Top Section */}
@@ -82,7 +100,13 @@ const Dashboard = () => {
         </Box>
 
         {/* Content Section */}
-        <Box sx={{}}>{addItem ? <AddFoodItems setAddItem={setAddItem} /> : <FoodItemList />}</Box>
+        <Box sx={{}}>
+          {addItem ? (
+            <AddFoodItems setAddItem={setAddItem} />
+          ) : (
+            <FoodItemList />
+          )}
+        </Box>
       </Box>
 
       <RestaurantFooter />

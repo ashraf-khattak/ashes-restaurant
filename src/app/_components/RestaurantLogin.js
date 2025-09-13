@@ -130,6 +130,7 @@ const RestaurantLogin = () => {
       <Box component="form" onSubmit={handleSubmit} sx={{ mt: 2 }}>
         <TextField
           fullWidth
+          size="small"
           margin="normal"
           label="Email"
           type="email"
@@ -171,6 +172,7 @@ const RestaurantLogin = () => {
 
         <TextField
           fullWidth
+          size="small"
           margin="normal"
           label="Password"
           type={showPassword ? "text" : "password"}
@@ -230,12 +232,12 @@ const RestaurantLogin = () => {
         <Button
           type="submit"
           variant="contained"
-          size="medium"
+          size="small"
           disabled={loading} // Disable button when loading
           sx={{
             mt: 3,
             mb: 2,
-            py: 1.5,
+            py: .5,
             width: "50%",
             borderRadius: 8,
             backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#18FFFF", // Change color when loading

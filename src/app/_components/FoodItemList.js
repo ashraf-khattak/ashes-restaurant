@@ -158,7 +158,20 @@ const FoodItemList = () => {
             <TableContainer
               sx={{
                 borderRadius: 2,
-                maxHeight: 500,
+                maxHeight: "550px",
+                overflowY: "auto",
+                "&::-webkit-scrollbar": {
+                  width: "6px",
+                },
+                "&::-webkit-scrollbar-thumb": {
+                  background:
+                    "linear-gradient(45deg, rgba(0,0,0,1) 0%, #6a11cb 70%, #2574fce1 100%)",
+                  borderRadius: "6px",
+                },
+                "&::-webkit-scrollbar-track": {
+                  background: "rgba(0,0,0,0.1)", // optional track color
+                  borderRadius: "6px",
+                },
               }}
             >
               {/* <Table sx={{ minWidth: 650 }} aria-label="food items table"> */}
