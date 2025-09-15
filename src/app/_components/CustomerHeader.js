@@ -79,9 +79,7 @@ export default function CustomerHeader() {
         position="static"
         sx={{
           background:
-            // "linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, #6a11cb 100%)",
             "linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, #6a11cb 70%, #2574fce1 100%)",
-          // background: "linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)",
           boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
         }}
       >

@@ -30,6 +30,7 @@ export default function RestaurantFooter() {
         color: "white",
         pt: 6,
         pb: 3,
+        borderTop: "6px solid #18FFFF",
       }}
     >
       <Container maxWidth="lg">
@@ -42,7 +43,10 @@ export default function RestaurantFooter() {
                 Foodies
               </Typography>
             </Box>
-            <Typography variant="body2" sx={{ opacity: 0.8, width: "40%" }}>
+            <Typography
+              variant="body2"
+              sx={{ opacity: 0.8, width: { xs: "80%", md: "40%" } }}
+            >
               Your one-stop place for exploring and adding amazing restaurants.
               Fresh, fast, and delicious food experiences!
             </Typography>

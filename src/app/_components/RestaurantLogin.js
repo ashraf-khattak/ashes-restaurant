@@ -261,23 +261,6 @@ const RestaurantLogin = () => {
           variant="outlined"
           size="small"
           disabled={loading} // Disable button when loading
-          // sx={{
-          //   gridColumn: "1 / -1",
-          //   mt: 3,
-          //   mb: 2,
-          //   py: .5,
-          //   borderRadius: 8,
-          //   backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#18FFFF", // Change color when loading
-          //   color: "black",
-          //   fontWeight: "bold",
-          //   "&:hover": {
-          //     backgroundColor: loading ? "rgba(24, 255, 255, 0.7)" : "#00e5e5",
-          //   },
-          //   "&.Mui-disabled": {
-          //     backgroundColor: "rgba(24, 255, 255, 0.5)",
-          //     color: "rgba(0, 0, 0, 0.7)",
-          //   },
-          // }}
           sx={{
             gridColumn: "1 / -1",
             my: 3,
