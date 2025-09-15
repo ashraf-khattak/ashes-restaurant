@@ -20,6 +20,7 @@ import {
 } from "@mui/icons-material";
 import RestaurantFooter from "@/app/_components/RestaurantFooter";
 import RestaurantHeader from "@/app/_components/RestaurantHeader";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const EditFoodItems = (props) => {
   const { id } = props.params; // food item id
@@ -164,15 +165,32 @@ const EditFoodItems = (props) => {
 
       <Box
         sx={{
-          p: 1,
+          minHeight: "80vh",
+          alignItems: "center",
+          justifyContent: "center",
+          textAlign: "center",
           backgroundImage:
             "url('https://b.zmtcdn.com/data/pictures/8/19475178/0ee7d3ca6c321c2e1ec61042f1a3d056.jpg?fit=around|960:500&crop=960:500;*,*');",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundBlendMode: "overlay",
-          backgroundColor: "rgba(214, 214, 218, 0.8)",
-          minHeight: "80vh",
+          backgroundColor: "rgba(0, 0, 0, 0.6)",
+          backgroundBlendMode: "Multiply",
+          color: "white",
+          py: { xs: 6, md: 15 },
+          // px: { xs: 1, sm: 2, md: 10 },
+          px: { xs: 1, sm: 2, md: 5, lg: 10, xl: 20 },
         }}
+        // sx={{
+        //   p: 1,
+        //   backgroundImage:
+        //     "url('https://b.zmtcdn.com/data/pictures/8/19475178/0ee7d3ca6c321c2e1ec61042f1a3d056.jpg?fit=around|960:500&crop=960:500;*,*');",
+        //   backgroundSize: "cover",
+        //   backgroundPosition: "center",
+        //   backgroundBlendMode: "overlay",
+        //   backgroundColor: "rgba(214, 214, 218, 0.8)",
+        //   minHeight: "80vh",
+        // }}
       >
         <Paper
           elevation={3}
@@ -186,6 +204,7 @@ const EditFoodItems = (props) => {
             backgroundColor: "rgba(13, 13, 18, 0.54)",
             borderRadius: "16px",
             boxShadow: "0 0 10px 10px #ffffff57",
+            alignItems: "center",
           }}
         >
           <Typography
@@ -297,26 +316,61 @@ const EditFoodItems = (props) => {
                   {errors.api}
                 </Alert>
               )}
-
               <Button
-                type="submit"
-                variant="contained"
-                size="small"
-                disabled={loading}
+                variant="outlined"
+                size="medium"
+                startIcon={<ArrowBackIcon />} // 👈 Back Icon
+                onClick={() => router.push("../dashboard")}
                 sx={{
-                  gridColumn: "1 / -1",
-                  mt: 3,
-                  py: 0.5,
-                  borderRadius: 8,
-                  backgroundColor: loading
-                    ? "rgba(24, 255, 255, 0.7)"
-                    : "#18FFFF",
-                  color: "black",
-                  fontWeight: "bold",
+                  my: 3,
+                  px: 2,
+                  py: 1,
+                  width: "100%",
+                  border: "2px solid #18FFFF",
+                  color: "#18FFFF",
+                  borderRadius: 2,
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  boxShadow: "0 0 10px 7px #ffffff57",
                   "&:hover": {
                     backgroundColor: loading
                       ? "rgba(24, 255, 255, 0.7)"
                       : "#00e5e5",
+                    border: "2px solid #000000ff",
+                    boxShadow: "0 0 9px 6px #ffffffb9",
+                    color: "#000",
+                  },
+                  "&.Mui-disabled": {
+                    backgroundColor: "rgba(24, 255, 255, 0.5)",
+                    color: "rgba(0, 0, 0, 0.7)",
+                  },
+                }}
+              >
+                Back
+              </Button>
+              <Button
+                type="submit"
+                variant="outlined"
+                size="small"
+                disabled={loading}
+                sx={{
+                  my: 3,
+                  px: 2,
+                  py: 1,
+                  width: "100%",
+                  border: "2px solid #18FFFF",
+                  color: "#18FFFF",
+                  borderRadius: 2,
+                  fontWeight: 600,
+                  fontSize: "14px",
+                  boxShadow: "0 0 10px 7px #ffffff57",
+                  "&:hover": {
+                    backgroundColor: loading
+                      ? "rgba(24, 255, 255, 0.7)"
+                      : "#00e5e5",
+                    border: "2px solid #000000ff",
+                    boxShadow: "0 0 9px 6px #ffffffb9",
+                    color: "#000",
                   },
                   "&.Mui-disabled": {
                     backgroundColor: "rgba(24, 255, 255, 0.5)",
@@ -329,25 +383,6 @@ const EditFoodItems = (props) => {
                 ) : (
                   "Update Food Item"
                 )}
-              </Button>
-              <Button
-                variant="contained"
-                size="medium"
-                onClick={() => router.push("../dashboard")}
-                sx={{
-                  mt: 1,
-                  mb: 2,
-                  py: 1.5,
-                  borderRadius: 8,
-                  backgroundColor: "rgba(24, 255, 255, 0.7)",
-                  color: "black",
-                  fontWeight: "bold",
-                  "&:hover": {
-                    backgroundColor: "#00e5e5",
-                  },
-                }}
-              >
-                Back
               </Button>
             </Box>
           )}

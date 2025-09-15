@@ -76,7 +76,7 @@ export default function CustomerHeader() {
   return (
     <>
       <AppBar
-        position="static"
+        position="fixed"
         sx={{
           background:
             "linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, #6a11cb 70%, #2574fce1 100%)",

@@ -98,7 +98,7 @@ export default function Home() {
             backgroundColor: "rgba(0, 0, 0, 0.6)",
             backgroundBlendMode: "multiply",
             color: "white",
-            py: { xs: 6, md: 15 },
+            py: { xs: 13, md: 15, lg: 20 },
             px: { xs: 1, sm: 2, md: 10 },
           }}
         >
@@ -207,6 +207,7 @@ export default function Home() {
         <Box
           sx={{
             display: "grid",
+            minHeight: "75vh",
             gridTemplateColumns: {
               xs: "1fr",
               sm: "1fr 1fr",
@@ -231,13 +232,13 @@ export default function Home() {
                 <Card
                   key={restaurant._id}
                   sx={{
-                    borderRadius: 4,
+                    borderRadius: 3,
                     boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
                     overflow: "hidden",
                     transition: "transform 0.3s, box-shadow 0.3s",
                     "&:hover": {
                       // transform: "translateY(-5px)",
-                      boxShadow: "0 12px 30px rgba(0,0,0,0.25)",
+                      boxShadow: "0 12px 30px rgba(0,0,0,0.75)",
                     },
                   }}
                 >
@@ -343,13 +344,11 @@ export default function Home() {
                           my: 1,
                           px: 2,
                           py: 0.5,
-                          // width: "75%",
                           border: "2px solid #18FFFF",
                           color: "#18FFFF",
                           borderRadius: 2,
                           fontWeight: 600,
                           fontSize: "14px",
-                          // boxShadow: "0 0 10px 7px #ffffff57",
                           background:
                             "linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, #6a11cb 70%, #2574fce1 100%)",
                           boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
@@ -380,21 +379,22 @@ export default function Home() {
                     }
                     sx={{
                       my: 3,
-                      px: 2,
-                      py: 2,
+                      px: 1,
+                      py: 1,
                       width: { xs: "80%", md: "25%" },
                       color: "#18FFFF",
                       borderRadius: 2,
                       fontWeight: 600,
-                      fontSize: "14px",
-                      // boxShadow: "0 0 10px 7px #ffffff57",
+                      fontSize: "16px",
+                      border: "3px solid #18FFFF",
+                      // boxShadow: "0 0 10px 7px #18FFFF",
                       background:
                         "linear-gradient(90deg,rgba(0, 0, 0, 1) 0%, #6a11cb 70%, #2574fce1 100%)",
                       boxShadow: "0 4px 20px rgba(0,0,0,0.2)",
                       textTransform: "capitalize",
                       "&:hover": {
                         backgroundColor: "#00e5e5",
-                        border: "2px solid #000000ff",
+                        border: "3px solid #000000ff",
                         boxShadow: "0 0 9px 6px #5a5757b9",
                         color: "#ffffffff",
                       },
@@ -420,212 +420,3 @@ export default function Home() {
     </>
   );
 }
-
-// "use client";
-
-// // import { Box, Typography } from "@mui/material";
-// import RestaurantHeader from "./_components/RestaurantHeader";
-// import RestaurantFooter from "./_components/RestaurantFooter";
-// import CustomerHeader from "./_components/CustomerHeader";
-// import {
-//   Box,
-//   Typography,
-//   TextField,
-//   InputAdornment,
-//   MenuItem,
-//   Button,
-//   Divider,
-// } from "@mui/material";
-// import SearchIcon from "@mui/icons-material/Search";
-// import { useEffect, useState } from "react";
-
-// // const cities = ["Islamabad", "Karachi", "Lahore", "Peshawar", "Quetta"];
-
-// export default function Home() {
-//   const [cities, setCities] = useState([]); // ✅ store city list
-//   const [restaurantList, setRestaurantList] = useState([]); // ✅ store city list
-//   const [city, setCity] = useState(""); // ✅ selected city
-//   const [query, setQuery] = useState("");
-
-//   useEffect(() => {
-//     loadLocations();
-//     loadRestaurants();
-//   }, []);
-
-//   const loadLocations = async () => {
-//     try {
-//       const res = await fetch(`/api/customer/locations`);
-//       const data = await res.json();
-
-//       if (data.success && data.data) {
-//         setCities(data.data); // ✅ city list from API
-//       }
-//     } catch (err) {
-//       console.error("Error loading locations:", err);
-//     }
-//   };
-//   const loadRestaurants = async () => {
-//     try {
-//       const res = await fetch(`/api/customer`);
-//       const data = await res.json();
-
-//       if (data.success && data.data) {
-//         setRestaurantList(data.data); // ✅ city list from API
-//       }
-//     } catch (err) {
-//       console.error("Error loading locations:", err);
-//     }
-//   };
-//   console.log(restaurantList, "jhahfadjk");
-
-//   // useEffect(() => {
-//   //   loadLocations();
-//   // }, []);
-
-//   // const loadLocations = async () => {
-//   //   // later connect with API
-//   //   let response = await fetch(`/api/customer/locations`);
-//   //   response = await response.json();
-//   //   if (response.success) {
-//   //     setCity(response.result);
-//   //   }
-//   //   console.log("City:", city, "Query:", query);
-//   // };
-
-//   return (
-//     <>
-//       <CustomerHeader />
-//       <Box sx={{ minHeight: "80vh" }}>
-//         <Box
-//           sx={{
-//             alignItems: "center",
-//             justifyContent: "center",
-//             textAlign: "center",
-//             backgroundImage:
-//               "url('https://b.zmtcdn.com/data/pictures/8/19475178/0ee7d3ca6c321c2e1ec61042f1a3d056.jpg?fit=around|960:500&crop=960:500;*,*');",
-//             backgroundSize: "cover",
-//             backgroundPosition: "center",
-//             backgroundBlendMode: "overlay",
-//             backgroundColor: "rgba(0, 0, 0, 0.6)",
-//             backgroundBlendMode: "Multiply",
-//             color: "white",
-//             py: { xs: 6, md: 15 },
-//             px: { xs: 1, sm: 2, md: 10 },
-//           }}
-//         >
-//           {/* Heading */}
-//           <Typography variant="h3" fontWeight="bold" gutterBottom>
-//             Find the Best Food Near You 🍴
-//           </Typography>
-//           <Typography variant="h6" sx={{ mb: 4 }}>
-//             Search by city and your favorite restaurants or dishes
-//           </Typography>
-
-//           {/* Search Bar Container */}
-//           <Box
-//             sx={{
-//               display: "flex",
-//               flexDirection: { xs: "column", md: "row" },
-//               alignItems: "center",
-//               mx: "auto",
-//               p: 1,
-//               borderRadius: { xs: 4, md: 8 },
-//               width: { xs: "100%", md: "60%", lg: "50%" },
-
-//               // gradient border with animation
-//               border: "4px solid transparent",
-//               backgroundImage: `linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
-//                       linear-gradient(45deg, #FF4081, #7C4DFF, #18FFFF)`,
-//               backgroundOrigin: "border-box",
-//               backgroundClip: "padding-box, border-box",
-//               backgroundSize: "200% auto", // important for animation
-//               animation: "gradientMove 6s linear infinite",
-
-//               "@keyframes gradientMove": {
-//                 "0%": {
-//                   backgroundPosition: "0% 50%",
-//                 },
-//                 "50%": {
-//                   backgroundPosition: "100% 50%",
-//                 },
-//                 "100%": {
-//                   backgroundPosition: "0% 50%",
-//                 },
-//               },
-//             }}
-//           >
-//             {/* Search Input */}
-//             <TextField
-//               size="small"
-//               value={query}
-//               onChange={(e) => setQuery(e.target.value)}
-//               placeholder="Search food or restaurant..."
-//               variant="outlined"
-//               sx={{
-//                 flex: 1,
-//                 width: { xs: "100%", md: "70%" },
-//                 "& .MuiOutlinedInput-root": {
-//                   "& fieldset": { border: "none" },
-//                 },
-//               }}
-//               InputProps={{
-//                 startAdornment: (
-//                   <InputAdornment position="start">
-//                     <SearchIcon color="action" />
-//                   </InputAdornment>
-//                 ),
-//               }}
-//             />
-
-//             {/* Divider only visible on desktop */}
-//             <Divider
-//               orientation="vertical"
-//               flexItem
-//               sx={{
-//                 display: { xs: "none", md: "block" },
-//                 mx: 1,
-//                 bgcolor: "#ddd",
-//               }}
-//             />
-//             <Divider
-//               orientation="horizontal"
-//               flexItem
-//               sx={{
-//                 display: { xs: "block", md: "none" },
-//                 mx: 1,
-//                 bgcolor: "#ddd",
-//               }}
-//             />
-
-//             {/* Dropdown for City */}
-
-//             <TextField
-//               select
-//               value={city}
-//               onChange={(e) => setCity(e.target.value)}
-//               variant="outlined"
-//               size="small"
-//               label="Select City"
-//               sx={{
-//                 width: { xs: "100%", md: "30%" },
-//                 "& .MuiOutlinedInput-root": {
-//                   "& fieldset": { border: "none" }, // remove border
-//                   "&:hover fieldset": { border: "none" },
-//                   "&.Mui-focused fieldset": { border: "none" },
-//                   borderRadius: 2,
-//                 },
-//               }}
-//             >
-//               {cities.map((c) => (
-//                 <MenuItem key={c} value={c}>
-//                   {c}
-//                 </MenuItem>
-//               ))}
-//             </TextField>
-//           </Box>
-//         </Box>
-//       </Box>
-//       <RestaurantFooter />
-//     </>
-//   );
-// }
