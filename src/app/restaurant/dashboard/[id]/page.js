@@ -21,6 +21,7 @@ import {
 import RestaurantFooter from "@/app/_components/RestaurantFooter";
 import RestaurantHeader from "@/app/_components/RestaurantHeader";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CustomerHeader from "@/app/_components/CustomerHeader";
 
 const EditFoodItems = (props) => {
   const { id } = props.params; // food item id
@@ -161,7 +162,8 @@ const EditFoodItems = (props) => {
 
   return (
     <Box>
-      <RestaurantHeader />
+      {/* <RestaurantHeader /> */}
+       <CustomerHeader />
 
       <Box
         sx={{

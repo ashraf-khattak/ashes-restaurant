@@ -7,13 +7,14 @@ import RestaurantFooter from "@/app/_components/RestaurantFooter";
 import RestaurantHeader from "@/app/_components/RestaurantHeader";
 import { Box, Button, Paper, Stack, Typography } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CustomerHeader from "@/app/_components/CustomerHeader";
 
 const Dashboard = () => {
   const [addItem, setAddItem] = useState(false);
   return (
     <Box>
-      <RestaurantHeader />
-
+      {/* <RestaurantHeader /> */}
+      <CustomerHeader />
       <Box
         sx={{
           minHeight: "80vh",

@@ -6,13 +6,15 @@ import RestaurantSignUp from "../_components/RestaurantSignUp";
 import RestaurantHeader from "../_components/RestaurantHeader";
 import RestaurantFooter from "../_components/RestaurantFooter";
 import { Box, Button } from "@mui/material";
+import CustomerHeader from "../_components/CustomerHeader";
 
 const Restaurant = () => {
   const [isLogin, setIsLogin] = useState(true);
   return (
     <>
+      <CustomerHeader />
       <Box className="container">
-        <RestaurantHeader />
+        {/* <RestaurantHeader /> */}
         {/* <Box
           sx={{
             p: 1,
@@ -79,7 +81,6 @@ const Restaurant = () => {
               : "Already have Account? SignIn"}
           </Button>
         </Box>
-
         <RestaurantFooter />
       </Box>
     </>
